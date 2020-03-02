@@ -13,25 +13,21 @@ class Api {
         this.url = config.url
     }
 
-     async countries(){
-        return getData(this.url)
-    }
+    async countries() {
+       return getData(`${this.url}/countries`)
+      }
 
-    async cities(){
-        return getData(this.url)
-    }
+    async cities() {
+        return getData(`${this.url}/cities`)
+      }
 
-    prices(params){
-
-    }
-
-
+    async prices(params) {}
 }
 
 async function getData (url) {
     try{
-        const response = await axios.get(`${url}/cities`)
-        return Promise.resolve(response)
+        const response = await axios.get(url)
+        return response.data
     } catch (err) {
         return Promise.reject(err)
     }
