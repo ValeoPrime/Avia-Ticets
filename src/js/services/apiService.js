@@ -21,7 +21,15 @@ class Api {
         return getData(`${this.url}/cities`)
       }
 
-    async prices(params) {}
+    async airlines() {
+        return getData(`${this.url}/airlines`);
+      }
+    
+    async prices(params) {
+        return getData(`${this.url}/prices/cheap`, {
+            params,
+            });
+    }
 }
 
 async function getData (url) {
