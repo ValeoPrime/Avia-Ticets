@@ -8,11 +8,13 @@ import currencyUI from './views/currency';
 document.addEventListener('DOMContentLoaded', e => {
   const form = formUI.form;
 
+
   // Events
   initApp();
   form.addEventListener('submit', e => {
     e.preventDefault();
     onFormSubmit();
+    
   });
 
   // handlers
@@ -22,7 +24,9 @@ document.addEventListener('DOMContentLoaded', e => {
   }
 
   async function onFormSubmit() {
+    console.log('ОТПРАВКА ИЗ', formUI.originValue)
     const origin = locations.getCityCodeByKey(formUI.originValue);
+    console.log('ПРИБЫТИЕ В', formUI.destinationValue)
     const destination = locations.getCityCodeByKey(formUI.destinationValue);
     const depart_date = formUI.departDateValue;
     const return_date = formUI.returnDateValue;
@@ -35,7 +39,10 @@ document.addEventListener('DOMContentLoaded', e => {
       return_date,
       currency,
     });
-
+    console.log(locations)
     ticketsUI.renderTickets(locations.lastSearch);
+    
   }
 });
+
+

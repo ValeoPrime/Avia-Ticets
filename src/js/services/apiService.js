@@ -26,10 +26,21 @@ class Api {
       }
     
     async prices(params) {
-        return getData(`${this.url}/prices/cheap`, {
-            params,
-            });
+        console.log('ПАРАМЕТРЫ',params)
+    try {
+        const response = await axios.get(`${this.url}/prices/cheap`, {
+        params,
+        });
+        return response.data;
+    } catch (err) {
+        console.log(err);
+        return Promise.reject(err);
     }
+    }
+
+
+
+
 }
 
 async function getData (url) {

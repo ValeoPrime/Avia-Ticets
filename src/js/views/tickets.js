@@ -8,7 +8,7 @@ class TicketsUI {
 
   renderTickets(tickets) {
     this.clearContainer();
-
+    console.log('Количество найденный билетов',tickets.length)
     if (!tickets.length) {
       this.showEmptyMsg();
       return;
