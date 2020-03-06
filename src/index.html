@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
 
-    <title>Document</title>
+    <title>Avia-Tickets</title>
   </head>
   <body>
     <nav class="header purple darken-1">
@@ -19,6 +19,8 @@
             <i class="large material-icons">flight_takeoff</i>
             <a href="#" class="brand-logo">Avia Tickets</a>
           </div>
+          <button id = 'favor' class = 'favorButton'>Избранные билеты</button>
+          <button id = 'return' class = 'favorButton hide'>Вернутся к форме</button>
           <ul id="nav-mobile" class="right hide-on-med-and-down ml-auto">
             <li>
               <div class="input-field currency-select">
@@ -45,6 +47,7 @@
                       type="text"
                       id="autocomplete-origin"
                       class="autocomplete"
+                      required
                     />
                     <label for="autocomplete-origin">Origin</label>
                   </div>
@@ -53,6 +56,7 @@
                       type="text"
                       id="autocomplete-destination"
                       class="autocomplete"
+                      required
                     />
                     <label for="autocomplete-destination">Destination</label>
                   </div>

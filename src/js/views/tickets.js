@@ -8,21 +8,25 @@ class TicketsUI {
 
   renderTickets(tickets) {
     this.clearContainer();
-    console.log('Количество найденный билетов',tickets.length)
-    if (!tickets.length) {
+    if (tickets.length == 0) {
       this.showEmptyMsg();
       return;
     }
 
     let fragment = '';
     const currency = this.getCurrencySymbol();
-
+    
     tickets.forEach(ticket => {
-      const template = TicketsUI.ticketTemplate(ticket, currency);
+      let inFavor = ticket.inFavor || false 
+      ticket.id = ticket.id || Math.floor(Math.random() * 1000) 
+      
+      const template = TicketsUI.ticketTemplate(ticket, currency, ticket.id, inFavor);
       fragment += template;
     });
 
     this.container.insertAdjacentHTML('afterbegin', fragment);
+    return tickets
+
   }
 
   clearContainer() {
@@ -37,12 +41,20 @@ class TicketsUI {
   static emptyMsgTemplate() {
     return `
     <div class="tickets-empty-res-msg">
-      По вашему запросу билетов не найдено.
+      По вашему запросу билетов не найдено/не добавлено.
     </div>
     `;
   }
 
-  static ticketTemplate(ticket, currency) {
+  static ticketTemplate(ticket, currency, id, inFavor) {
+    let hide = 'hide'
+    let view = ''
+    
+    if(inFavor === true){
+      hide = ''
+      view = 'hide'
+    } 
+    
     return `
     <div class="col s12 m6">
       <div class="card ticket-card">
@@ -53,6 +65,12 @@ class TicketsUI {
           />
           <span class="ticket-airline-name"
             >${ticket.airline_name}</span
+          >
+          <button class="addFavor ${view}" id = "addFavor" data-id = '${id}'
+          >Добавить в избранное</button
+          >
+          <button class="removeFavor ${hide} " id = "removeFavor" data-id = '${id}'
+            >Убрать из избранного</button
           >
         </div>
         <div class="ticket-destination d-flex align-items-center">

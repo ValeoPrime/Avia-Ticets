@@ -26,7 +26,7 @@ class Api {
       }
     
     async prices(params) {
-        console.log('ПАРАМЕТРЫ',params)
+        
     try {
         const response = await axios.get(`${this.url}/prices/cheap`, {
         params,
