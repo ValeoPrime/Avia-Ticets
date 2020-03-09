@@ -1,4 +1,5 @@
 import ticketsUI from './../views/tickets';
+import formUI from '../views/form';
 
 class FavoritTikets {
   constructor(){
@@ -9,26 +10,43 @@ class FavoritTikets {
   renderFavoriteTikets(){
     changeShow()
     ticketsUI.renderTickets(this.favoriteTickets)
-
-
-    const  removeFaforButtons = document.querySelectorAll('#removeFavor')
-
-    removeFaforButtons.forEach(elem => {
-      elem.addEventListener('click', () => {
-        console.log('Клик по отозвать')
-        favoritTikets.removeFaforite(elem.getAttribute('data-id'))
-        // console.log('Родитель родителя кнопки', elem.parentNode.parentNode)
-        // elem.parentNode.parentNode.parentNode.innerHTML = ''
-
+    
+    document.addEventListener('click', (event) => {
+      event.preventDefault()
+      if(event.target.id == 'removeFavor'){
+        favoritTikets.removeFaforite(event.target.getAttribute('data-id'))
         ticketsUI.renderTickets(this.favoriteTickets)
-      })
+      }
+
     })
+
+
+    // const  removeFaforButtons = document.querySelectorAll('#removeFavor')
+
+    // removeFaforButtons.forEach(elem => {
+    //   elem.addEventListener('click', () => {
+        
+    //     favoritTikets.removeFaforite(elem.getAttribute('data-id'))
+        
+
+    //     ticketsUI.renderTickets(this.favoriteTickets)
+    //   })
+    // })
     
   }
 
   hideFavoriteTikets(){
     ticketsUI.clearContainer()
     changeShow()
+
+    formUI.origin.value  = ''
+    
+    formUI.destination.value  = '';
+    
+    formUI.depart.value  = '',
+   
+    formUI.return.value  = ''
+   
 
   }
 
@@ -44,7 +62,6 @@ class FavoritTikets {
       if(el.id == id){
         el.inFavor = false
         this.favoriteTickets.splice(this.favoriteTickets.indexOf(el), 1)
-        console.log('Билет после удаления',el)
       }
     })
     console.log('Массив после удаления',this.favoriteTickets)

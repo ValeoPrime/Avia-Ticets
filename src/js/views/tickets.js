@@ -8,6 +8,7 @@ class TicketsUI {
 
   renderTickets(tickets) {
     this.clearContainer();
+    console.log('МАССИВ БИЛЕТОВ',tickets)
     if (tickets.length == 0) {
       this.showEmptyMsg();
       return;
