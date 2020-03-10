@@ -1,5 +1,4 @@
 import ticketsUI from './../views/tickets';
-import formUI from '../views/form';
 
 class FavoritTikets {
   constructor(){
@@ -19,33 +18,13 @@ class FavoritTikets {
       }
 
     })
-
-
-    // const  removeFaforButtons = document.querySelectorAll('#removeFavor')
-
-    // removeFaforButtons.forEach(elem => {
-    //   elem.addEventListener('click', () => {
-        
-    //     favoritTikets.removeFaforite(elem.getAttribute('data-id'))
-        
-
-    //     ticketsUI.renderTickets(this.favoriteTickets)
-    //   })
-    // })
     
   }
 
   hideFavoriteTikets(){
     ticketsUI.clearContainer()
     changeShow()
-
-    formUI.origin.value  = ''
-    
-    formUI.destination.value  = '';
-    
-    formUI.depart.value  = '',
-   
-    formUI.return.value  = ''
+    location.reload()
    
 
   }
@@ -53,7 +32,7 @@ class FavoritTikets {
   addFavorite(favorTicket){
     favorTicket.inFavor = true
     this.favoriteTickets.push(favorTicket)
-    console.log('Массив избранных',this.favoriteTickets)
+
     return this.favoriteTickets
   }
 
@@ -64,8 +43,7 @@ class FavoritTikets {
         this.favoriteTickets.splice(this.favoriteTickets.indexOf(el), 1)
       }
     })
-    console.log('Массив после удаления',this.favoriteTickets)
-
+    
     return this.favoriteTickets
     
   }
